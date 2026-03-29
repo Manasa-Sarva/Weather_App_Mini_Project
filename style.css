@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* 🌌 Background */
+body {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: radial-gradient(circle at 20% 50%, #001a3a 0%, #000814 60%),
+              linear-gradient(180deg, #020617, #0b1b34);
+
+  position: relative;
+}
+
+/* ☀️ Animated Sun */
+body::before {
+  content: "";
+  position: absolute;
+  top: 60px;
+  right: 120px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+
+  background: radial-gradient(circle,
+    rgba(255,200,80,0.9),
+    rgba(255,140,0,0.3),
+    transparent
+  );
+
+  filter: blur(40px);
+  animation: sunMove 6s ease-in-out infinite alternate;
+}
+
+@keyframes sunMove {
+  from { transform: translateY(0px); }
+  to { transform: translateY(20px); }
+}
+
+/* 🌫 Light Spread */
+body::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  right: 0;
+
+  background: radial-gradient(circle at 80% 20%,
+    rgba(255,180,50,0.2),
+    transparent 60%
+  );
+}
+
+/* ☁️ Clouds */
+.cloud {
+  position: absolute;
+  width: 200px;
+  height: 60px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  filter: blur(10px);
+}
+
+.cloud1 {
+  top: 120px;
+  left: -200px;
+  animation: cloudMove 25s linear infinite;
+}
+
+.cloud2 {
+  top: 200px;
+  left: -300px;
+  animation: cloudMove 35s linear infinite;
+}
+
+@keyframes cloudMove {
+  to { transform: translateX(150vw); }
+}
+
+/* 🌧 Rain */
+#rainCanvas {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Layout */
+.container {
+  width: 900px;
+  z-index: 2;
+}
+
+/* Search */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.search-box button {
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: none;
+  background: #00c6ff;
+  color: white;
+}
+
+/* 💎 Card */
+.weather-card {
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(30px);
+  border-radius: 25px;
+  padding: 30px;
+  color: white;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.6),
+    inset 0 0 20px rgba(255,255,255,0.05);
+}
+
+/* Glow border */
+.weather-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 25px;
+  background: linear-gradient(
+    120deg,
+    rgba(255,200,100,0.2),
+    transparent,
+    rgba(0,150,255,0.2)
+  );
+  filter: blur(25px);
+  z-index: -1;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+#temp {
+  font-size: 70px;
+}
+
+/* Details */
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.details div {
+  width: 22%;
+  padding: 15px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* Forecast */
+.forecast {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.forecast .card {
+  flex: 1;
+  padding: 12px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.forecast img {
+  width: 35px;
+}
+
+/* Loader */
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid #00c6ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg) translate(-50%, -50%); }
+}
+
+/* Error Message */
+.error {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 0, 0, 0.8);
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  z-index: 999;
+}
+
+/* Hidden utility */
+.hidden {
+  display: none;
+}

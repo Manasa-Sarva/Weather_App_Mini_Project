@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <canvas id="rainCanvas"></canvas>
+
+  <!-- Loader -->
+  <div id="loader" class="loader hidden"></div>
+
+  <!-- Error -->
+  <div id="errorMsg" class="error hidden"></div>
+
+  <div class="container">
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search city..." />
+      <button onclick="getWeather()">Search</button>
+    </div>
+
+    <div class="weather-card">
+
+      <div class="top">
+        <div>
+          <h2 id="city">--</h2>
+          <p id="date"></p>
+          <p id="condition"></p>
+        </div>
+        <h1 id="temp">--°C</h1>
+      </div>
+
+      <div class="details">
+        <div><p>Feels</p><h3 id="feels"></h3></div>
+        <div><p>Humidity</p><h3 id="humidity"></h3></div>
+        <div><p>Wind</p><h3 id="wind"></h3></div>
+        <div><p>UV</p><h3 id="uv"></h3></div>
+      </div>
+
+      <div class="forecast" id="forecast"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
